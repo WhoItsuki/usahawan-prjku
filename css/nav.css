@@ -1,0 +1,24 @@
+.icons{
+    align-items: baseline;
+    margin-top: 10px;
+}
+
+.icon{
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;     /* Horizontal center */
+    justify-content: center; /* Vertical center */
+    text-align: center;
+    margin-left:10px;
+    width:50px;
+
+}
+.icon:hover{
+    transform:translateY(-10px);
+    transition: transform 0.3s;
+}
+.icon a{
+    text-decoration: none;
+    color:black;
+}
+
