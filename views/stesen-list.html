@@ -9,15 +9,35 @@
     <link rel="stylesheet" href="../css/nav.css">
 
     <style>
-        .img{
-            width:200;
-
+        .gambar-profile{
+            object-fit: cover; 
+            max-width: 120px;
+            min-width: 50px;
         }
+        .iframe{
+            max-width: 300px;
+            width:300px;
+        }
+        
+        .table{
+            min-width:800px;
+        }
+        
+        .pejabat{
+            width:20%;
+        }
+        .lokasi{
+            width:40%;
+        }
+        .hubungi{
+            width:40%;
+        }
+        
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top shadow" style="background-color:white ;border-bottom: 1px solid #ccc; height: auto; max-height: 120px;">
-        <div class="container" style="height:100px; justify-content:center;"   >
+        <div class="container " style="height:100px; justify-content:center;"   >
             <a href="../index.html">
                 <img src="../image/logorisda.png" alt="Logo" class="img-fluid" style="max-height: 50px;">
             </a>
@@ -50,48 +70,262 @@
     <div class="container" style="margin-top: 130px;">
         <h2 class="text-center mb-4">Senarai Stesen Pejabat Risda Jajahan Kelantan Utara</h2>
         <h5 class="text-center">Pejabat Risda Jajahan Kelantan Utara</h5>
-        <table class="table table-bordered table-hover">
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover" >
             <thead>
                 <tr>
-                    <th>Pejabat</th>
-                    <th>Lokasi</th>
-                    <th>Hubungi</th>
+                    <th class="pejabat">Pejabat</th>
+                    <th class="lokasi">Lokasi</th>
+                    <th class="hubungi">Hubungi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="text-center align-middle">Pejabat Jajahan Kelantan Utara</td>
-                    <td class="text-center align-middle"><iframe
-                            width="250"
-                            height="250"
-                            style="border:0"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.8048419198399!2d102.1516536640141!3d6.048165633353741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b6a68fd84e1ec7%3A0x40a6cf5bd5475743!2sNorth%20Kelantan%20Risda%20Office!5e0!3m2!1sen!2smy!4v1754780431514!5m2!1sen!2smy">
-                        </iframe>
+                    <td class="text-center align-middle">
+                            <iframe
+                                style="border:0"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.8048419198399!2d102.1516536640141!3d6.048165633353741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b6a68fd84e1ec7%3A0x40a6cf5bd5475743!2sNorth%20Kelantan%20Risda%20Office!5e0!3m2!1sen!2smy!4v1754780431514!5m2!1sen!2smy">
+                            </iframe>
                     </td>
-                    <td class="">PT 241 Seksyen, Jalan Pasir Pekan, 17000 Pasir Mas, Kelantan<br>No. Telefon: 09-7901061, 09-7902628<br>Faks: 09-7901061, 09-7902628</td>
+                    <td class="align-middle">PT 241 Seksyen, Jalan Pasir Pekan, 17000 Pasir Mas, Kelantan<br>No. Telefon: 09-7901061, 09-7902628<br>Faks: 09-7901061, 09-7902628</td>
                 </tr>
             </tbody>
         </table>
-        
-        <h5 class="text-center">Staf bertugas</h5>
-        <table class="table table-bordered table-hover">
+        </div>
+
+        <div class=accordion>
+            <div class="card">
+                <div class="card-header text-center">
+                    <a class="btn" data-bs-toggle="collapse" href="#1">
+                        <p>Staff Bertugas</p>
+                    </a>
+                </div>
+                <div id="1" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Profil</th>
+                                        <th>Nama</th>
+                                        <th>Jawatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/NIK MOHD HAFIZI BIN NIK IBRAHIM.jpg"></td>
+                                        <td class="text-center align-middle">NIK MOHD HAFIZI BIN NIK IBRAHIM</td>
+                                        <td class="align-middle ">KETUA UNIT PEMABANGUNAN USAHAWAN DAN PROGRAM KHAS<br>Penolong Pegawai Pertanian G6</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/WAN NUR AMIRA BINTI WAN MOHD ASRI.jpg"></td>
+                                        <td class="text-center align-middle">WAN NUR AMIRA BINTI WAN MOHD ASRI</td>
+                                        <td class="align-middle ">PENYELARAS UNIT PEMABANGUNAN USAHAWAN DAN PROGRAM KHAS<br>Penolong Pegawai Pertanian G5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/NIK.jpg"></td>
+                                        <td class="text-center align-middle">NIK MOHD SYUKRI BIN NIK MOHAMED</td>
+                                        <td class="align-middle ">PEMBANTU TADBIR N2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/1.jpg"></td>
+                                        <td class="text-center align-middle">NUR AZURA BINTI ROSLI</td>
+                                        <td class="align-middle ">PEMBANTU TADBIR N1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Stesen To' Uban-->
+        <br><br><br>
+        <h5 class="text-center">Stesen To' Uban</h5>
+        <div class="table-responsive" >
+        <table class="table table-bordered table-hover" >
             <thead>
                 <tr>
-                    <th>Profil</th>
-                    <th>Nama</th>
-                    <th>Jawatan</th>
+                    <th class="pejabat">Pejabat</th>
+                    <th class="lokasi">Lokasi</th>
+                    <th class="hubungi">Hubungi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-center align-middle"><img src></td>
-                    <td class="text-center align-middle"></td>
-                    <td class="">PT 241 Seksyen, Jalan Pasir Pekan, 17000 Pasir Mas, Kelantan<br>No. Telefon: 09-7901061, 09-7902628<br>Faks: 09-7901061, 09-7902628</td>
+                    <td class="text-center align-middle">Stesen To' Uban</td>
+                    <td class="text-center align-middle">
+                            <iframe
+                                style="border:0"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3968.2031962424503!2d102.1465043395102!3d5.966727447490833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b6a1ca79a94cf1%3A0x7b2852ff35fdeb4f!2sPejabat%20Stesen%20RISDA%20TO&#39;UBAN!5e0!3m2!1sen!2smy!4v1754827838703!5m2!1sen!2smy">
+                            </iframe>
+                    </td>
+                    <td class="align-middle">Pej. RISDA Stesen To'Uban Lot 3948, Pekan To'Uban, 17050 Pasir Mas, Kelantan<br>No. Telefon: 09-7942066</td>
                 </tr>
             </tbody>
         </table>
+        </div>
+        
+        <div class=accordion>
+            <div class="card">
+                <div class="card-header text-center">
+                    <a class="btn" data-bs-toggle="collapse" href="#2">
+                        <p>Staff Bertugas</p>
+                    </a>
+                </div>
+                <div id="2" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Profil</th>
+                                        <th>Nama</th>
+                                        <th>Jawatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/2.jpg"></td>
+                                        <td class="text-center align-middle">NUR IZZATI HUDA BINTI MAHADI</td>
+                                        <td class="align-middle ">Penolong Pegawai Pertanian G5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Stesen Ketereh-->
+        <br><br><br>
+        <h5 class="text-center">Stesen Ketereh</h5>
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover" >
+            <thead>
+                <tr>
+                    <th class="pejabat">Pejabat</th>
+                    <th class="lokasi">Lokasi</th>
+                    <th class="hubungi">Hubungi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center align-middle">Stesen Ketereh</td>
+                    <td class="text-center align-middle">
+                            <iframe
+                                style="border:0"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31746.979456707537!2d102.2238605585288!3d5.9433022186251145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b6980553263c21%3A0xd17d5f69355371e1!2sPejabat%20Risda%20Stesen%20Ketereh!5e0!3m2!1sen!2smy!4v1754810863405!5m2!1sen!2smy">
+                            </iframe>
+                    </td>
+                    <td class="align-middle">Pej. RISDA Stesen Ketereh Lot. PT. 183 Jln. Market Barat, 16450 Ketereh Kota Bharu, Kelantan.<br>No. Telefon: 09-7889771</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        
+        <div class=accordion>
+            <div class="card">
+                <div class="card-header text-center">
+                    <a class="btn" data-bs-toggle="collapse" href="#3">
+                        <p>Staff Bertugas</p>
+                    </a>
+                </div>
+                <div id="3" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Profil</th>
+                                        <th>Nama</th>
+                                        <th>Jawatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/3.jpg"></td>
+                                        <td class="text-center align-middle">NOOR ASIKIN BIN AMIRULDIN</td>
+                                        <td class="align-middle ">Penolong Pegawai Pertanian G5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Stesen Rantau Panjang-->
+        <br><br><br>
+        <h5 class="text-center">Stesen Rantau Panjang</h5>
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover" >
+            <thead>
+                <tr>
+                    <th class="pejabat">Pejabat</th>
+                    <th class="lokasi">Lokasi</th>
+                    <th class="hubungi">Hubungi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center align-middle">Stesen Rantau Panjang</td>
+                    <td class="text-center align-middle">
+                            <iframe
+                                style="border:0"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.961226145219!2d102.01950607503589!3d6.0000620939850755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b41f8e0fa67193%3A0xfae60c3be9b59b54!2sPejabat%20RISDA%20Stesen%20Rantau%20Panjang!5e0!3m2!1sen!2smy!4v1754827912630!5m2!1sen!2smy">
+                            </iframe>
+                    </td>
+                    <td class="align-middle">Pej. RISDA Stesen Rantau Panjang, Lot 546 Taman Bakti, 17200 Rantau Panjang, Kelantan<br>No. Telefon: 09-7950396</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        
+        <div class=accordion>
+            <div class="card">
+                <div class="card-header text-center">
+                    <a class="btn" data-bs-toggle="collapse" href="#4">
+                        <p>Staff Bertugas</p>
+                    </a>
+                </div>
+                <div id="4" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Profil</th>
+                                        <th>Nama</th>
+                                        <th>Jawatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center align-middle"><img class="gambar-profile" src="../image/4.jpg"></td>
+                                        <td class="text-center align-middle">MUSLIANA BINTI OTHMAN</td>
+                                        <td class="align-middle ">Penolong Pegawai Pertanian G5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
