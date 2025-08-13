@@ -22,7 +22,7 @@
     box-shadow: none;
     background: transparent;
     padding:20px;
-    transition: transform,filter 0.3s ease-in-out; 
+    transition: all ease-in-out 0.3s; 
 }
 
 .service-icon img {
