@@ -205,15 +205,15 @@
 
     <script>
   // CountAPI dengan namespace & key unik
-  const countUrl = "https://api.countapi.xyz/update/usahawanprjku/visits/?amount=1";
+  const countUrl = "https://api.countapi.xyz/update/usahawanprjku/visits?amount=1";
 
-  fetch(countUrl)
+  fetch(countUrl, { mode: "cors" })
     .then(res => res.json())
     .then(res => {
       document.getElementById("visitor-count").innerText = res.value;
     })
     .catch(err => {
-      console.error("Error fetching CountAPI:", err);
+      console.error("CountAPI error:", err);
       document.getElementById("visitor-count").innerText = "Error";
     });
 </script>
