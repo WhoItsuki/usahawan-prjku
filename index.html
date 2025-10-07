@@ -198,6 +198,17 @@
 
             </div>
         </div>
-    </div>
+    </div><br>
+    <div class="container text-center">
+        <p>Jumlah Pelawat Laman Web: <span id="visits"></span></p>
+    </div><br><br><br>
+
+    <script>
+        fetch('https://api.countapi.xyz/hit/usahawanprjku.netlify.app/visits')
+        .then(res => res.json())
+        .then(res => {
+        document.getElementById('visits').innerText = res.value;
+        });
+    </script>
 </body>
 </html> 
