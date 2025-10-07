@@ -204,12 +204,18 @@
     </div><br><br><br>
 
     <script>
-        fetch('https://api.countapi.xyz/hit/usahawanprjku/visits')
-        .then(response => response.json())
-        .then(data => {
-        document.getElementById('visitor-count').innerText = data.value;
-        })
-        .catch(error => console.error('CountAPI error:', error));
-    </script>
+  // CountAPI dengan namespace & key unik
+  const countUrl = "https://api.countapi.xyz/update/usahawanprjku/visits/?amount=1";
+
+  fetch(countUrl)
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById("visitor-count").innerText = res.value;
+    })
+    .catch(err => {
+      console.error("Error fetching CountAPI:", err);
+      document.getElementById("visitor-count").innerText = "Error";
+    });
+</script>
 </body>
 </html> 
