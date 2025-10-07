@@ -200,15 +200,16 @@
         </div>
     </div><br>
     <div class="container text-center">
-        <p>Jumlah Pelawat Laman Web: <span id="visits"></span></p>
+        <p>Jumlah Pelawat Laman Web: <span id="visit-count">0</span></p>
     </div><br><br><br>
 
     <script>
         fetch('https://api.countapi.xyz/hit/usahawanprjku/visits')
-        .then(res => res.json())
-        .then(res => {
-        document.getElementById('visits').innerText = res.value;
-        });
+        .then(response => response.json())
+        .then(data => {
+        document.getElementById('visitor-count').innerText = data.value;
+        })
+        .catch(error => console.error('CountAPI error:', error));
     </script>
 </body>
 </html> 
