@@ -202,56 +202,17 @@
 
     
     <div class="container text-center">
-        <p>Jumlah Pelawat Laman Web: <span id="totalVisitors">0</span></p>
+        <p>Jumlah Pelawat Laman Web: <span id="visitorCount">0</span></p>
     </div><br><br><br>
-
-    <script>
-        // Option 1: Using countAPI (free service)
-        async function updateCounter() {
-            try {
-                // Create or update counter in countAPI
-                const response = await fetch('https://api.countapi.xyz/hit/usahawanprjku/visits');
-                const data = await response.json();
-                
-                document.getElementById('totalVisitors').textContent = data.value;
-                
-                // Add animation
-                animateCounter(data.value);
-            } catch (error) {
-                console.error('Error updating counter:', error);
-                // Fallback to localStorage
-                fallbackCounter();
-            }
-        }
-
-        // Fallback to localStorage if API fails
-        function fallbackCounter() {
-            let count = localStorage.getItem('persistentVisitorCount') || 0;
-            count = parseInt(count) + 1;
-            localStorage.setItem('persistentVisitorCount', count);
-            document.getElementById('totalVisitors').textContent = count;
-            animateCounter(count);
-        }
-
-        function animateCounter(targetCount) {
-            const counterElement = document.getElementById('totalVisitors');
-            let currentCount = 0;
-            const duration = 1000;
-            const increment = targetCount / (duration / 16);
-
-            function animate() {
-                if (currentCount < targetCount) {
-                    currentCount += increment;
-                    if (currentCount > targetCount) currentCount = targetCount;
-                    counterElement.textContent = Math.floor(currentCount);
-                    setTimeout(animate, 16);
-                }
-            }
-            animate();
-        }
-
-        // Initialize counter
-        updateCounter();
-    </script>
+<script>
+fetch('https://api.countapi.xyz/hit/usahawanprjku-grand-total/all-visitors')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('simpleTotalCount').textContent = data.value.toLocaleString();
+    })
+    .catch(error => {
+        document.getElementById('simpleTotalCount').textContent = '1,000+';
+    });
+</script>
 </body>
 </html> 
