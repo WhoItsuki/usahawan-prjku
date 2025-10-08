@@ -206,112 +206,52 @@
     </div><br><br><br>
 
     <script>
-        // Enhanced visitor counter for Netlify
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize or get visitor data from localStorage
-            function getVisitorData() {
-                const defaultData = {
-                    totalVisitors: 0,
-                    recentVisitors: [],
-                    firstVisit: new Date().toISOString()
-                };
+        // Option 1: Using countAPI (free service)
+        async function updateCounter() {
+            try {
+                // Create or update counter in countAPI
+                const response = await fetch('https://api.countapi.xyz/hit/usahawanprjku/visits');
+                const data = await response.json();
                 
-                try {
-                    return JSON.parse(localStorage.getItem('netlifyVisitorData')) || defaultData;
-                } catch (e) {
-                    console.error('Error reading visitor data:', e);
-                    return defaultData;
+                document.getElementById('totalVisitors').textContent = data.value;
+                
+                // Add animation
+                animateCounter(data.value);
+            } catch (error) {
+                console.error('Error updating counter:', error);
+                // Fallback to localStorage
+                fallbackCounter();
+            }
+        }
+
+        // Fallback to localStorage if API fails
+        function fallbackCounter() {
+            let count = localStorage.getItem('persistentVisitorCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('persistentVisitorCount', count);
+            document.getElementById('totalVisitors').textContent = count;
+            animateCounter(count);
+        }
+
+        function animateCounter(targetCount) {
+            const counterElement = document.getElementById('totalVisitors');
+            let currentCount = 0;
+            const duration = 1000;
+            const increment = targetCount / (duration / 16);
+
+            function animate() {
+                if (currentCount < targetCount) {
+                    currentCount += increment;
+                    if (currentCount > targetCount) currentCount = targetCount;
+                    counterElement.textContent = Math.floor(currentCount);
+                    setTimeout(animate, 16);
                 }
             }
-            
-            function saveVisitorData(data) {
-                try {
-                    localStorage.setItem('netlifyVisitorData', JSON.stringify(data));
-                } catch (e) {
-                    console.error('Error saving visitor data:', e);
-                }
-            }
-            
-            let visitorData = getVisitorData();
-            const currentTime = new Date().toLocaleString();
-            
-            // Check if this is a new session in this browser
-            if (!sessionStorage.getItem('currentVisit')) {
-                // This is a new browsing session
-                sessionStorage.setItem('currentVisit', 'true');
-                
-                // Check if this browser has visited before
-                if (!localStorage.getItem('hasVisitedBefore')) {
-                    // First time visitor in this browser
-                    visitorData.totalVisitors++;
-                    localStorage.setItem('hasVisitedBefore', 'true');
-                    
-                    // Add to recent visitors
-                    visitorData.recentVisitors.unshift({
-                        id: 'visitor_' + Math.random().toString(36).substr(2, 6),
-                        time: currentTime,
-                        isNew: true
-                    });
-                } else {
-                    // Returning visitor, but new session
-                    visitorData.recentVisitors.unshift({
-                        id: 'visitor_' + Math.random().toString(36).substr(2, 6),
-                        time: currentTime,
-                        isNew: false
-                    });
-                }
-                
-                // Keep only the 5 most recent visitors
-                if (visitorData.recentVisitors.length > 5) {
-                    visitorData.recentVisitors = visitorData.recentVisitors.slice(0, 5);
-                }
-                
-                // Save updated data
-                saveVisitorData(visitorData);
-            }
-            
-            // Update the display
-            function updateDisplay() {
-                // Animate counter
-                const counterElement = document.getElementById('totalVisitors');
-                let currentCount = 0;
-                const targetCount = visitorData.totalVisitors;
-                const duration = 1000;
-                const increment = targetCount / (duration / 16);
-                
-                function animateCounter() {
-                    if (currentCount < targetCount) {
-                        currentCount += increment;
-                        if (currentCount > targetCount) currentCount = targetCount;
-                        counterElement.textContent = Math.floor(currentCount);
-                        setTimeout(animateCounter, 16);
-                    }
-                }
-                
-                animateCounter();
-                
-                // Update recent visitors list
-                const recentVisitorsList = document.getElementById('recentVisitors');
-                recentVisitorsList.innerHTML = '';
-                
-                visitorData.recentVisitors.forEach(visitor => {
-                    const listItem = document.createElement('li');
-                    const visitorType = visitor.isNew ? ' (New)' : ' (Returning)';
-                    listItem.innerHTML = `
-                        <span>Visitor ${visitor.id.substr(8)}${visitorType}</span>
-                        <span>${visitor.time}</span>
-                    `;
-                    recentVisitorsList.appendChild(listItem);
-                });
-            }
-            
-            updateDisplay();
-            
-            // Optional: Add console log for debugging
-            console.log('Netlify Visitor Counter Active');
-            console.log('Total Visitors:', visitorData.totalVisitors);
-            console.log('Recent Visitors:', visitorData.recentVisitors);
-        });
+            animate();
+        }
+
+        // Initialize counter
+        updateCounter();
     </script>
 </body>
 </html> 
