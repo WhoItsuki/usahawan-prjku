@@ -202,30 +202,14 @@
 
     
     <div class="container text-center">
-        <p>Jumlah Pelawat Laman Web: <span id="TotalVisitors">0</span></p>
+        <p>Jumlah Pelawat Laman Web: <span id="counter">0</span></p>
     </div><br><br><br>
     <script>
-        (function () {
-            var counterElement = document.getElementById('TotalVisitors');
-            if (!counterElement) { return; }
-            var namespace = 'usahawanprjku.netlify.app';
-            var key = 'visits';
-            var url = 'https://api.countapi.xyz/hit/' + encodeURIComponent(namespace) + '/' + encodeURIComponent(key);
-            fetch(url, { cache: 'no-store' })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    if (data && typeof data.value === 'number') {
-                        try {
-                            counterElement.textContent = data.value.toLocaleString('ms-MY');
-                        } catch (e) {
-                            counterElement.textContent = String(data.value);
-                        }
-                    }
-                })
-                .catch(function () {
-                    // Leave default value on error
-                });
-        })();
+        fetch("https://api.countapi.xyz/hit/usahawanprjku.netlify.app/visits")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("counter").innerText = data.value;
+            });
     </script>
 </body>
 </html> 
