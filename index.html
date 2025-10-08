@@ -204,141 +204,28 @@
     <div class="container text-center">
         <p>Jumlah Pelawat Laman Web: <span id="TotalVisitors">0</span></p>
     </div><br><br><br>
-
     <script>
-                // Real Visitor Counter - No Random Numbers
-        class RealVisitorCounter {
-            constructor() {
-                this.initialized = false;
-                this.init();
-            }
-            
-            init() {
-                // Check if this is a new session
-                if (!sessionStorage.getItem('visitCounted')) {
-                    this.countVisit();
-                    sessionStorage.setItem('visitCounted', 'true');
-                }
-                
-                // Display current counts
-                this.displayCounts();
-                
-                this.initialized = true;
-            }
-            
-            countVisit() {
-                // Get current date information
-                const now = new Date();
-                const today = now.toDateString();
-                const currentWeek = this.getWeekNumber(now);
-                const currentMonth = now.getMonth() + '-' + now.getFullYear();
-                
-                // Total Visitors - Always increment
-                this.incrementCounter('totalVisitors');
-                
-                // Monthly Visitors - Reset if new month
-                this.incrementCounter(`monthVisitors-${currentMonth}`);
-                
-                // Weekly Visitors - Reset if new week
-                this.incrementCounter(`weekVisitors-${currentWeek}`);
-                
-                // Daily Visitors - Reset if new day
-                this.incrementCounter(`dailyVisitors-${today}`);
-            }
-            
-            incrementCounter(key) {
-                let count = localStorage.getItem(key);
-                if (count === null) {
-                    count = 1; // Start from 1 for new periods
-                } else {
-                    count = parseInt(count) + 1;
-                }
-                localStorage.setItem(key, count);
-                return count;
-            }
-            
-            getCounterValue(key) {
-                const value = localStorage.getItem(key);
-                return value ? parseInt(value) : 0;
-            }
-            
-            getWeekNumber(date) {
-                const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-                const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
-                return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
-            }
-            
-            displayCounts() {
-                const now = new Date();
-                const today = now.toDateString();
-                const currentWeek = this.getWeekNumber(now);
-                const currentMonth = now.getMonth() + '-' + now.getFullYear();
-                
-                // Get current values
-                const totalCount = this.getCounterValue('totalVisitors');
-                const monthCount = this.getCounterValue(`monthVisitors-${currentMonth}`);
-                const weekCount = this.getCounterValue(`weekVisitors-${currentWeek}`);
-                const todayCount = this.getCounterValue(`dailyVisitors-${today}`);
-                
-                // Animate to current values
-                this.animateCounter('totalVisitors', totalCount);
-                this.animateCounter('monthVisitors', monthCount);
-                this.animateCounter('weekVisitors', weekCount);
-                this.animateCounter('todayVisitors', todayCount);
-            }
-            
-            animateCounter(elementId, target) {
-                const element = document.getElementById(elementId);
-                if (!element) return;
-                
-                const current = parseInt(element.textContent.replace(/,/g, '')) || 0;
-                
-                if (current === target) return;
-                
-                let currentCount = current;
-                const increment = Math.max(1, (target - current) / 30);
-                
-                const update = () => {
-                    if (currentCount < target) {
-                        currentCount += increment;
-                        if (currentCount > target) currentCount = target;
-                        
-                        element.textContent = Math.floor(currentCount).toLocaleString();
-                        element.classList.add('counting');
-                        
-                        setTimeout(() => {
-                            element.classList.remove('counting');
-                        }, 500);
-                        
-                        setTimeout(update, 50);
+        (function () {
+            var counterElement = document.getElementById('TotalVisitors');
+            if (!counterElement) { return; }
+            var namespace = 'usahawanprjku';
+            var key = 'global-visitors';
+            var url = 'https://api.countapi.xyz/hit/' + encodeURIComponent(namespace) + '/' + encodeURIComponent(key);
+            fetch(url, { cache: 'no-store' })
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data && typeof data.value === 'number') {
+                        try {
+                            counterElement.textContent = data.value.toLocaleString('ms-MY');
+                        } catch (e) {
+                            counterElement.textContent = String(data.value);
+                        }
                     }
-                };
-                
-                update();
-            }
-            
-            // Public method to force refresh (useful for debugging)
-            refresh() {
-                this.displayCounts();
-            }
-        }
-        
-        // Initialize the counter when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            window.visitorCounter = new RealVisitorCounter();
-            
-            // Optional: Add a small delay to show the counting animation
-            setTimeout(() => {
-                // This ensures the animation is visible even on fast connections
-            }, 1000);
-        });
-
-        // Optional: Add manual refresh for testing
-        function refreshCounters() {
-            if (window.visitorCounter) {
-                window.visitorCounter.refresh();
-            }
-        }
+                })
+                .catch(function () {
+                    // Leave default value on error
+                });
+        })();
     </script>
 </body>
 </html> 
