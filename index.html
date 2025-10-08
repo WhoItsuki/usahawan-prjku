@@ -209,7 +209,7 @@
             var counterElement = document.getElementById('TotalVisitors');
             if (!counterElement) { return; }
             var namespace = 'usahawanprjku.netlify.app';
-            var key = 'global-visitors';
+            var key = 'visits';
             var url = 'https://api.countapi.xyz/hit/' + encodeURIComponent(namespace) + '/' + encodeURIComponent(key);
             fetch(url, { cache: 'no-store' })
                 .then(function (res) { return res.json(); })
