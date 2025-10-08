@@ -208,7 +208,7 @@
         (function () {
             var counterElement = document.getElementById('TotalVisitors');
             if (!counterElement) { return; }
-            var namespace = 'usahawanprjku';
+            var namespace = 'usahawanprjku.netlify.app';
             var key = 'global-visitors';
             var url = 'https://api.countapi.xyz/hit/' + encodeURIComponent(namespace) + '/' + encodeURIComponent(key);
             fetch(url, { cache: 'no-store' })
